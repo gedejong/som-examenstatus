@@ -1,0 +1,22 @@
+body {
+	padding-top: 60px;
+	/* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.statusbox {
+	background-color: #cf9;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin: 15px;
+}
+
+.error {
+	background-color: #fc9;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	font-weight: bold;
+}

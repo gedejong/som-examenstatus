@@ -1,6 +1,17 @@
-*.class
+.classpath
+.project
+.settings
+target
+*.log
+.prefs
+*.swp
+*.swo
+*.orig
+core/.factorypath
+diffsync.php
+*.iml
+.idea/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+core/src/test/resources/hibernate.properties
+web-main/src/test/resources/hibernate.properties
+web-rhodium/src/test/resources/hibernate.properties
