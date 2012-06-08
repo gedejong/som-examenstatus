@@ -51,7 +51,7 @@ public class EndpointModel extends AbstractReadOnlyModel<List<ExamenStatusJobDat
 			IExamenStatusService port = service.getPort(IExamenStatusService.class);
 
 			final String username = System.getProperty("examenstatus.username");
-			final String secretWord = System.getProperty("examenstatus.secretwird");
+			final String secretWord = System.getProperty("examenstatus.secretword");
 
 			String challenge = port.issueChallenge(username);
 
