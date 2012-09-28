@@ -34,6 +34,13 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+	</plugins>
+
 	<modules>
 		<module>examenstatus-core</module>
 		<module>examenstatus-viewer</module>
