@@ -3,6 +3,7 @@ package nl.topicus.iridium.examenstatus.viewer;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.jeroensteenbeeke.iridium.examenstatus.core.ChallengeUtil;
 import com.jeroensteenbeeke.iridium.examenstatus.core.ExamenStatusException;
 import com.jeroensteenbeeke.iridium.examenstatus.core.ExamenStatusJobData;
@@ -27,6 +29,10 @@ public class EndpointModel extends AbstractReadOnlyModel<List<ExamenStatusJobDat
 
 	private boolean error = false;
 
+	private static final Map<String, IExamenStatusService> services = Maps.newConcurrentMap();
+
+	private List<ExamenStatusJobData> data = null;
+
 	public EndpointModel(String url)
 	{
 		super();
@@ -39,43 +45,63 @@ public class EndpointModel extends AbstractReadOnlyModel<List<ExamenStatusJobDat
 	}
 
 	@Override
-	public List<ExamenStatusJobData> getObject()
+	public synchronized List<ExamenStatusJobData> getObject()
 	{
-		try
+		if (data == null)
 		{
-			error = false;
-			URL endpointURL = new URL(url);
-			QName serviceName = new QName("http://services.mijnsom.nl", "ExamenStatusService");
+			try
+			{
+				error = false;
+				if (!services.containsKey(url))
+				{
+					URL endpointURL = new URL(url);
+					QName serviceName =
+						new QName("http://services.mijnsom.nl", "ExamenStatusService");
 
-			Service service = Service.create(endpointURL, serviceName);
-			IExamenStatusService port = service.getPort(IExamenStatusService.class);
+					Service service = Service.create(endpointURL, serviceName);
 
-			final String username = System.getProperty("examenstatus.username");
-			final String secretWord = System.getProperty("examenstatus.secretword");
+					services.put(url, service.getPort(IExamenStatusService.class));
+				}
 
-			String challenge = port.issueChallenge(username);
+				IExamenStatusService port = services.get(url);
 
-			return port.getRunningExamenJobs(challenge,
-				ChallengeUtil.determineSolution(username, challenge, secretWord));
+				final String username = System.getProperty("examenstatus.username");
+				final String secretWord = System.getProperty("examenstatus.secretword");
+
+				String challenge = port.issueChallenge(username);
+
+				data =
+					port.getRunningExamenJobs(challenge,
+						ChallengeUtil.determineSolution(username, challenge, secretWord));
+			}
+			catch (MalformedURLException e)
+			{
+				log.error(e.getMessage(), e);
+				error = true;
+				data = Lists.newArrayList();
+			}
+			catch (ExamenStatusException e)
+			{
+				log.error(e.getMessage(), e);
+				error = true;
+				data = Lists.newArrayList();
+			}
+			catch (Exception sf)
+			{
+				log.error(sf.getMessage(), sf);
+				error = true;
+				data = Lists.newArrayList();
+			}
 		}
-		catch (MalformedURLException e)
-		{
-			log.error(e.getMessage(), e);
-			error = true;
-			return Lists.newArrayList();
-		}
-		catch (ExamenStatusException e)
-		{
-			log.error(e.getMessage(), e);
-			error = true;
-			return Lists.newArrayList();
-		}
-		catch (Exception sf)
-		{
-			log.error(sf.getMessage(), sf);
-			error = true;
-			return Lists.newArrayList();
-		}
 
+		return data;
+
+	}
+
+	@Override
+	public void detach()
+	{
+		super.detach();
+		data = null;
 	}
 }
