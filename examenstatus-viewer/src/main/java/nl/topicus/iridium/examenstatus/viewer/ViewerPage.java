@@ -2,7 +2,9 @@ package nl.topicus.iridium.examenstatus.viewer;
 
 import java.util.List;
 
-import org.apache.wicket.markup.html.IHeaderResponse;
+import org.apache.wicket.markup.head.CssHeaderItem;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -78,19 +80,19 @@ public class ViewerPage extends WebPage
 	{
 		super.renderHead(response);
 
-		response.renderCSSReference("css/style.css");
+		response.render(CssHeaderItem.forUrl("css/style.css"));
 
 		if (getApplication().usesDevelopmentConfig())
 		{
-			response.renderCSSReference("css/bootstrap.css");
-			response.renderCSSReference("css/bootstrap-responsive.css");
-			response.renderJavaScriptReference("js/bootstrap.js");
+			response.render(CssHeaderItem.forUrl("css/bootstrap.css"));
+			response.render(CssHeaderItem.forUrl("css/bootstrap-responsive.css"));
+			response.render(JavaScriptHeaderItem.forUrl("js/bootstrap.js"));
 		}
 		else
 		{
-			response.renderCSSReference("css/bootstrap.min.css");
-			response.renderCSSReference("css/bootstrap-responsive.min.css");
-			response.renderJavaScriptReference("js/bootstrap.min.js");
+			response.render(CssHeaderItem.forUrl("css/bootstrap.min.css"));
+			response.render(CssHeaderItem.forUrl("css/bootstrap-responsive.min.css"));
+			response.render(JavaScriptHeaderItem.forUrl("js/bootstrap.min.js"));
 		}
 	}
 }
