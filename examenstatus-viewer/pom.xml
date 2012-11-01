@@ -9,6 +9,7 @@
 	</parent>
 	
 	<artifactId>examenstatus-viewer</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	
 	<name>Examenstatus Viewer</name>
