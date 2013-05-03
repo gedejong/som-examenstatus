@@ -4,9 +4,9 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>examenstatus</artifactId>
-		<groupId>nl.topicus.onderwijs.iridium</groupId>
-		<version>1.1-SNAPSHOT</version>
+		<artifactId>examenstatus-parent</artifactId>
+		<groupId>nl.topicus.onderwijs</groupId>
+		<version>1.2-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>examenstatus-core</artifactId>
@@ -15,9 +15,18 @@
 	
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-api</artifactId>
-			<version>${cxf.version}</version>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
 		</dependency>
 	</dependencies>
 	<properties>

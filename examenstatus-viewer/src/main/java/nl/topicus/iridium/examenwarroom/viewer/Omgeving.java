@@ -1,10 +1,13 @@
-package nl.topicus.iridium.examenstatus.viewer;
+package nl.topicus.iridium.examenwarroom.viewer;
 
 import java.util.List;
 
+import nl.topicus.cobra.functions.SerializableFunction;
+
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
-public enum DefaultOmgeving
+public enum Omgeving
 {
 	LOCAL(0, "Lokaal")
 	{
@@ -13,7 +16,7 @@ public enum DefaultOmgeving
 		{
 			EndpointDescriptor lokaal = new EndpointDescriptor();
 			lokaal.setName("Lokale Server");
-			lokaal.setUrl("http://localhost:8080/som/services/examenStatus?wsdl");
+			lokaal.setUrl("http://localhost:8080/som/services/examenwarroom");
 
 			return Lists.newArrayList(lokaal);
 		}
@@ -25,14 +28,14 @@ public enum DefaultOmgeving
 		{
 			EndpointDescriptor acceptatie = new EndpointDescriptor();
 			acceptatie.setName("Acceptatie");
-			acceptatie.setUrl("https://acceptatie.mijnsom.nl/services/examenStatus?wsdl");
+			acceptatie.setUrl("https://acceptatie.mijnsom.nl/services/examenwarroom");
 
 			return Lists.newArrayList(acceptatie);
 		}
 	},
 
-	TEST(7, "Test", "https://test%d.mijnsom.nl/services/examenStatus?wsdl"),
-	PRODUCTIE(7, "Productie", "https://start%d.mijnsom.nl/services/examenStatus?wsdl")
+	TEST(7, "Test", "https://test%d.mijnsom.nl/services/examenwarroom"),
+	PRODUCTIE(7, "Productie", "https://start%d.mijnsom.nl/services/examenwarroom")
 
 	;
 
@@ -42,12 +45,12 @@ public enum DefaultOmgeving
 
 	private final String urlPattern;
 
-	private DefaultOmgeving(int omgevingen, String prefix)
+	private Omgeving(int omgevingen, String prefix)
 	{
 		this(omgevingen, prefix, "");
 	}
 
-	private DefaultOmgeving(int omgevingen, String prefix, String urlPattern)
+	private Omgeving(int omgevingen, String prefix, String urlPattern)
 	{
 		this.omgevingen = omgevingen;
 		this.prefix = prefix;
@@ -55,6 +58,12 @@ public enum DefaultOmgeving
 	}
 
 	public String getPrefix()
+	{
+		return prefix;
+	}
+
+	@Override
+	public String toString()
 	{
 		return prefix;
 	}
@@ -74,4 +83,19 @@ public enum DefaultOmgeving
 		return descriptors;
 
 	}
+
+	public static Function<Omgeving, List<EndpointDescriptor>> getEndpointFunction()
+	{
+		return new SerializableFunction<Omgeving, List<EndpointDescriptor>>()
+		{
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public List<EndpointDescriptor> apply(Omgeving omgeving)
+			{
+				return omgeving.getDescriptors();
+			}
+		};
+	}
+
 }

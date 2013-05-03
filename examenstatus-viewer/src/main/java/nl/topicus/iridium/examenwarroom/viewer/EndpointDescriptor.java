@@ -1,4 +1,4 @@
-package nl.topicus.iridium.examenstatus.viewer;
+package nl.topicus.iridium.examenwarroom.viewer;
 
 import java.io.Serializable;
 

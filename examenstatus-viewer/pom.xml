@@ -3,70 +3,72 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>examenstatus</artifactId>
-		<groupId>nl.topicus.onderwijs.iridium</groupId>
-		<version>1.1-SNAPSHOT</version>
+		<artifactId>examenstatus-parent</artifactId>
+		<groupId>nl.topicus.onderwijs</groupId>
+		<version>1.2-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>examenstatus-viewer</artifactId>
 	<packaging>war</packaging>
 	
+	<properties>
+		<bootstrap.version>0.8.1</bootstrap.version>
+	</properties>
+	
 	<name>Examenstatus Viewer</name>
 
-	<properties>
-		<jetty.version>7.5.0.v20110901</jetty.version>
-	</properties>
 	<dependencies>
+		<!-- COBRA -->
+		<dependency>
+			<groupId>nl.topicus.cobra</groupId>
+			<artifactId>cobra-commons</artifactId>
+		</dependency>
+	
 		<!-- WICKET DEPENDENCIES -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-core</artifactId>
-			<version>${wicket.version}</version>
 		</dependency>
-		<!-- OPTIONAL DEPENDENCY <dependency> <groupId>org.apache.wicket</groupId> 
-			<artifactId>wicket-extensions</artifactId> <version>${wicket.version}</version> 
-			</dependency> -->
-
+		
+		<dependency>
+			<groupId>org.odlabs.wiquery</groupId>
+			<artifactId>wiquery-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.odlabs.wiquery</groupId>
+			<artifactId>wiquery-jquery-ui</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-bootstrap</artifactId>
+		</dependency>
+		
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
 		</dependency>
 
 		<!-- JUNIT DEPENDENCY FOR TESTING -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
 
 		<!-- JETTY DEPENDENCIES FOR TESTING -->
 		<dependency>
-			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all-server</artifactId>
-			<version>${jetty.version}</version>
-			<scope>provided</scope>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-plus</artifactId>
+			<scope>test</scope>
 		</dependency>
 
-
-		<!-- CXF DEPENDENCIES FOR STATUS FETCHING -->
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
 
 		<!-- GUAVA DEPENDENCY FOR PURE AWESOME -->
 		<dependency>
@@ -76,7 +78,7 @@
 
 		<!-- AND OF COURSE THE CORE LIB -->
 		<dependency>
-			<groupId>nl.topicus.onderwijs.iridium</groupId>
+			<groupId>nl.topicus.onderwijs</groupId>
 			<artifactId>examenstatus-core</artifactId>
 		</dependency>
 	</dependencies>

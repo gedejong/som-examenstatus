@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:wicket>
+<head>
+	<meta charset="UTF-8">
+	<title>Examen War Room Dashboard</title>
+
+			<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+			<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]-->
+      </head>
+      <body>
+      	<section id="main">
+      		<header id="mainHeader">
+      			<h1>Examen War Room</h1>
+      		</header>
+      		<div id='notificationArea'>
+      			<div id="myCarousel" class="carousel slide vertical">
+      				<!-- Carousel items -->
+      				<div class="carousel-inner" id='notification-message-holder'>
+      					<div class="active item"></div>
+
+      				</div>
+      			</div>
+      		</div>
+
+      		<section id="section1" class="contentSection">
+      			<div id='headerLabels'>
+      				<span class="takenHeadLabels">Examentaken</span>
+      				<span id="takenHeadLabelRight" class="takenHeadLabels right">HAVO/VWO</span>
+      			</div>
+
+      			<div id="takenSVGposition"></div>
+
+			<!-- <div class='taskMessage'>
+				KSG Apeldoorn<br />
+				10:33<br />
+				Straat 3
+				<i class='iconewr iconewr-dead'></i>
+			</div> -->
+			<span class="takenLabels" id="taken100procent">100 %</span>
+			<span class="takenLabels right" id="takenXmin">x min</span>
+
+			<div id='bucket_area'>
+				<div class="buckets">
+
+				</div>
+				<div class="buckets">
+
+				</div>
+				<div class="buckets">
+
+				</div>
+				<div class="buckets">
+
+				</div>
+			</div>
+			<div id='bucket_label_area'>
+				<div class='bucket_label'>
+					NIET ACTIEF <br />
+					<span id='bucket_label_nog_te_doen'></span>
+				</div>
+				<div class='bucket_label'>
+					WACHTRIJ <br />
+					<span id='bucket_label_in_queue'></span>
+				</div>
+				<div class='bucket_label'>
+					BEZIG <br />
+					<span id='bucket_label_lopend'></span>
+				</div>
+				<div class='bucket_label'>
+					KLAAR<br />
+					<span id='bucket_label_klaar'></span>
+				</div> 
+			</div>
+
+			<div id='svg_progress_area'></div>
+
+		</section>
+	</section>
+	<wicket:container wicket:id="bodyScripts">
+		<script wicket:id="script" type="text/javascript"></script>
+	</wicket:container>
+</body>
+</html>

@@ -1,21 +1,18 @@
 package nl.topicus.iridium.examenstatus.viewer;
 
-import org.apache.wicket.util.time.Duration;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.bio.SocketConnector;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 public class StartExamenStatusApplication
 {
 	public static void main(String[] args)
 	{
-		int timeout = (int) Duration.ONE_HOUR.getMilliseconds();
 
 		Server server = new Server();
-		SocketConnector connector = new SocketConnector();
+		ServerConnector connector = new ServerConnector(server);
 
 		// Set some timeout options to make debugging easier.
-		connector.setMaxIdleTime(timeout);
 		connector.setSoLingerTime(-1);
 		connector.setPort(8081);
 		server.addConnector(connector);

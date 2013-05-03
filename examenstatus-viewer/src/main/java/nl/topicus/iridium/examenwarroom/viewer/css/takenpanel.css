@@ -1,0 +1,208 @@
+section#section1 {
+	padding-top: 87px;
+	width: 1040px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.greyDots {
+	fill: #6f8c94;
+	filter:alpha(opacity=70); /* msie */  
+	-moz-opacity: 0.70; /* firefox 1.0 */  
+	-khtml-opacity: 0.70; /* webkit */  
+	opacity: 0.70; /* css 3 */  
+}
+.orangeDots{
+	fill: #fbb03b;
+	filter:alpha(opacity=70); /* msie */  
+	-moz-opacity: 0.70; /* firefox 1.0 */  
+	-khtml-opacity: 0.70; /* webkit */  
+	opacity: 0.70; /* css 3 */  
+}
+.redDots{
+	fill: #c1272d;
+	filter:alpha(opacity=85); /* msie */ 
+	-moz-opacity: 0.85; /* firefox 1.0 */  
+	-khtml-opacity: 0.85; /* webkit */  
+	opacity: 0.85; /* css 3 */  
+}
+.whiteDot{
+	fill: #FFFFFF;
+	/*stroke-width: 5px;*/
+	/*stroke: #000000;*/
+}
+.alertDot{
+	fill: #ed1c24;
+	/*border: 10px solid black;*/
+	display: none;
+	stroke-width: 2px;
+	stroke: #FFFFFF;
+}
+.blackDots{
+	fill: #000000;
+}
+.notVisible{
+	display: none;
+}
+.visibleDot{
+	display: block;
+}
+text{
+	fill: #FFFFFF;
+}
+div#takenSVGposition{
+	float: right;
+	margin-left: 0px;
+	width: 1000px;
+
+}
+.takenLabels{
+	font-size: 13px;	
+}
+#taken100procent{
+}
+
+#takenXmin{
+	display: block;
+	width: 1040px;
+	text-align: right;
+	float: right;
+}
+
+div#headerLabels{
+	width: 1040px;
+	height: 40px;
+}
+
+.takenHeadLabels{
+	font-family: 'Share Tech Mono';
+	font-size: 24px;
+	float: left;
+	letter-spacing: 5px;
+}
+
+#pointOfOrigin{
+	float: left;
+	position: absolute;
+	z-index: 9999;
+	margin-top: 448px;
+	margin-left: 38px;
+}
+
+div.buckets{
+	display: inline-block;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	border-style: solid;
+	border-color: #000000;
+	
+	width: 198px;
+	height: 93px;
+	margin-top: 19px;
+	margin-right: 78px;
+}
+
+.buckets:last-child{
+	margin-right: 0px;
+}
+.bucket_label{
+	display: inline-block;
+	width: 198px;
+	height: 93px;
+	margin-right: 78px;
+	text-align: center;
+}
+.bucket_label:last-child{
+	margin-right: 0px;
+}
+
+div.taskMessage{
+	position: absolute;
+	/*margin-left: 100px;*/
+}
+
+div#bucket_area{
+	float: left;
+	margin-top: 69px;
+}
+div#bucket_label_area{
+	float: left;
+}
+
+#progressSvg{
+	position: relative;
+}
+
+#svg_progress_area{
+	float: left;
+	display: block;
+	width: 1040px;
+	height: 90px;
+	margin-top: -178px;
+}
+
+.vertical .carousel-inner {
+	height: 100%;
+}
+
+.carousel.vertical .item {
+	-webkit-transition: 0.6s ease-in-out top;
+	-moz-transition: 0.6s ease-in-out top;
+	-ms-transition: 0.6s ease-in-out top;
+	-o-transition: 0.6s ease-in-out top;
+	transition: 0.6s ease-in-out top;
+}
+
+.carousel.vertical .active {
+	top: 0;
+}
+
+.carousel.vertical .next {
+	top: 100%;
+}
+
+.carousel.vertical .prev {
+	top: -100%;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+	top: 0;
+}
+
+.carousel.vertical .active.left {
+	top: -100%;
+}
+
+.carousel.vertical .active.right {
+	top: 100%;
+}
+
+.carousel.vertical .item {
+	/* left: 0; */
+	}​
+
+	#myCarousel{
+		/* float: left; */
+		/* position: absolute; */
+		/* margin-top: -40px; */
+	}
+
+	.item{
+		display: block;
+		width: 1040px;
+		text-align: center; 
+	}
+	#notification-message-holder{
+		width: 300px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.carousel{
+		margin-bottom: 0px;
+	}
+
+
+

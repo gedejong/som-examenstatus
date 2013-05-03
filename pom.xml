@@ -5,31 +5,32 @@
 	<parent>
 		<groupId>nl.topicus.onderwijs</groupId>
 		<artifactId>onderwijs-project-parent</artifactId>
-		<version>2012.2.21</version>
+		<version>2012.2.40</version>
 	</parent>
 
-	<groupId>nl.topicus.onderwijs.iridium</groupId>
-	<artifactId>examenstatus</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<groupId>nl.topicus.onderwijs</groupId>
+	<artifactId>examenstatus-parent</artifactId>
+	<version>1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>examenstatus</name>
 
 	<properties>
+		<jaxrs.api.version>2.0-m16</jaxrs.api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies> 
 			<dependency>
-				<groupId>nl.topicus.onderwijs.iridium</groupId>
+				<groupId>nl.topicus.onderwijs</groupId>
 				<artifactId>examenstatus-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>nl.topicus.onderwijs.iridium</groupId>
-				<artifactId>examenstatus-viewer</artifactId>
-				<version>${project.version}</version>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>${jaxrs.api.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
