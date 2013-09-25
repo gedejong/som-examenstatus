@@ -15,6 +15,12 @@
 
 	<name>examenstatus</name>
 
+	<scm>
+		<url>https://github.com/topicusonderwijs/som-examenstatus</url>
+		<connection>scm:git:git@github.com:topicusonderwijs/som-examenstatus.git</connection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<properties>
 		<jaxrs.api.version>2.0-m16</jaxrs.api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
