@@ -21,6 +21,11 @@
 		<tag>HEAD</tag>
 	</scm>
 
+	<modules>
+		<module>examenstatus-core</module>
+		<module>examenstatus-viewer</module>
+	</modules>
+
 	<properties>
 		<jaxrs.api.version>2.0-m16</jaxrs.api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,14 +34,14 @@
 	<dependencyManagement>
 		<dependencies> 
 			<dependency>
-				<groupId>nl.topicus.onderwijs</groupId>
-				<artifactId>examenstatus-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>javax.ws.rs</groupId>
 				<artifactId>javax.ws.rs-api</artifactId>
 				<version>${jaxrs.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>nl.topicus.onderwijs</groupId>
+				<artifactId>examenstatus-core</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -51,9 +56,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<modules>
-		<module>examenstatus-core</module>
-		<module>examenstatus-viewer</module>
-	</modules>
 </project>
