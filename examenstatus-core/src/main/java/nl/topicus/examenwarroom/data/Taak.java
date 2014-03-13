@@ -2,9 +2,10 @@ package nl.topicus.examenwarroom.data;
 
 import java.util.Date;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Taak {
+public class Taak
+{
 
 	private State staat;
 
@@ -34,121 +35,149 @@ public class Taak {
 
 	private Instelling instelling;
 
-	public Taak() {
+	public Taak()
+	{
 
 	}
 
-	public Instelling getSchool() {
+	public Instelling getSchool()
+	{
 		return instelling;
 	}
 
-	public void setSchool(Instelling school) {
+	public void setSchool(Instelling school)
+	{
 		this.instelling = school;
 	}
 
-	public State getStaat() {
+	public State getStaat()
+	{
 		return staat;
 	}
 
-	public void setStaat(State staat) {
+	public void setStaat(State staat)
+	{
 		this.staat = staat;
 	}
 
 	@JsonIgnore
-	public Date getStartDate() {
+	public Date getStartDate()
+	{
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Date startDate)
+	{
 		this.startDate = startDate;
 	}
 
-	public int getProgressie() {
+	public int getProgressie()
+	{
 		return progressie;
 	}
 
-	public void setProgressie(int progressie) {
+	public void setProgressie(int progressie)
+	{
 		this.progressie = progressie;
 	}
 
-	public long getTaskId() {
+	public long getTaskId()
+	{
 		return taskId;
 	}
 
-	public void setTaskId(long taskId) {
+	public void setTaskId(long taskId)
+	{
 		this.taskId = taskId;
 	}
 
-	public Straat getStraat() {
+	public Straat getStraat()
+	{
 		return straat;
 	}
 
-	public void setStraat(Straat straat) {
+	public void setStraat(Straat straat)
+	{
 		this.straat = straat;
 	}
 
-	public String getStatus() {
+	public String getStatus()
+	{
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(String status)
+	{
 		this.status = status;
 	}
 
-	public String getNaam() {
+	public String getNaam()
+	{
 		return naam;
 	}
 
-	public void setNaam(String naam) {
+	public void setNaam(String naam)
+	{
 		this.naam = naam;
 	}
 
-	public String getWachtrijstatus() {
+	public String getWachtrijstatus()
+	{
 		return wachtrijstatus;
 	}
 
-	public void setWachtrijstatus(String wachtrijstatus) {
+	public void setWachtrijstatus(String wachtrijstatus)
+	{
 		this.wachtrijstatus = wachtrijstatus;
 	}
 
-	public String getFormattedBeginTijd() {
+	public String getFormattedBeginTijd()
+	{
 		return formattedBeginTijd;
 	}
 
-	public void setFormattedBeginTijd(String formattedBeginTijd) {
+	public void setFormattedBeginTijd(String formattedBeginTijd)
+	{
 		this.formattedBeginTijd = formattedBeginTijd;
 	}
 
-	public String getFormattedGemiddeldeVorigJaar() {
+	public String getFormattedGemiddeldeVorigJaar()
+	{
 		return formattedGemiddeldeVorigJaar;
 	}
 
-	public void setFormattedGemiddeldeVorigJaar(
-			String formattedGemiddeldeVorigJaar) {
+	public void setFormattedGemiddeldeVorigJaar(String formattedGemiddeldeVorigJaar)
+	{
 		this.formattedGemiddeldeVorigJaar = formattedGemiddeldeVorigJaar;
 	}
 
-	public long getBeginTijd() {
+	public long getBeginTijd()
+	{
 		return beginTijd;
 	}
 
-	public void setBeginTijd(long beginTijd) {
+	public void setBeginTijd(long beginTijd)
+	{
 		this.beginTijd = beginTijd;
 	}
 
-	public String getCategorie() {
+	public String getCategorie()
+	{
 		return categorie;
 	}
 
-	public void setCategorie(String categorie) {
+	public void setCategorie(String categorie)
+	{
 		this.categorie = categorie;
 	}
 
-	public String getType() {
+	public String getType()
+	{
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(String type)
+	{
 		this.type = type;
 	}
 }

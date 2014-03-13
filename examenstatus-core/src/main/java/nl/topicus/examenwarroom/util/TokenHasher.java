@@ -3,7 +3,7 @@ package nl.topicus.examenwarroom.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.joda.time.DateMidnight;
+import org.joda.time.LocalDate;
 
 public class TokenHasher
 {
@@ -14,7 +14,7 @@ public class TokenHasher
 
 	public static String createToken(String secret)
 	{
-		DateMidnight dm = DateMidnight.now();
+		LocalDate dm = LocalDate.now();
 
 		String preHash =
 			String.format("key-%s-%d-%d-%d", secret, dm.getDayOfMonth(), dm.getMonthOfYear(),
