@@ -11,6 +11,7 @@ core/.factorypath
 diffsync.php
 *.iml
 .idea/
+rebel.xml
 
 core/src/test/resources/hibernate.properties
 web-main/src/test/resources/hibernate.properties
