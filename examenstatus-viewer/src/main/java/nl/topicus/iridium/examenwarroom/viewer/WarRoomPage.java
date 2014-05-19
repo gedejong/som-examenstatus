@@ -90,9 +90,7 @@ public class WarRoomPage extends WebPage
 		builder.append("var warroom = {\n");
 		builder.append("\ttakenArray : [],\n");
 		builder.append("\tfirstTimeGrafiekDraw: true,\n");
-		builder.append("\taantalTakenTeDraaien: 0,\n");
-		builder.append("\taantalTakenVoltooid: 0,\n");
-		builder.append("\tindexTaakIdArray: [],\n");
+
 		builder.append("\tstraten : [\n");
 
 		int index = 1;
@@ -104,6 +102,10 @@ public class WarRoomPage extends WebPage
 
 			builder.append("\t\t{\n");
 			builder.append("\t\t\tid : ").append(index++).append(",\n");
+			builder.append("\t\t\ttaken : [],");
+			builder.append("\t\t\taantallen : [],");
+			builder.append("\t\t\taantalTakenTeDraaien: 0,\n");
+			builder.append("\t\t\taantalTakenVoltooid: 0,\n");
 			builder.append("\t\t\turl : '");
 			builder.append(desc.getUrl());
 			builder.append("'\n");

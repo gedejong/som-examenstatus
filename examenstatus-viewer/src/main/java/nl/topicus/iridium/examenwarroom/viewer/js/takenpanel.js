@@ -3,7 +3,7 @@ var takenPanel = {
 	/** settings */
 	width : 1080,
 	height : 480,
-	refreshRateSeconds : 1,
+	refreshRateSeconds : 5,
 	durationTransition : 1200, // ms
 
 	maxDurationBeforeOrange : config.naarOranje * 1000, // ms
@@ -125,6 +125,11 @@ function drawTakenGrafiek() {
 			for ( var i = 0; i < aantalStraten; i++) {
 				var adres = warroom.straten[i].url;
 				var straatId = warroom.straten[i].id;
+                var onsuccess = function(newData, textStatus) {
+                    updateProgressDots(this.success.index, newData);
+                };
+
+                onsuccess.index = i;
 				$.ajax({
 					url : adres + '/taken/aantallen/perstate?token=' + authToken,
 					type : 'GET',
@@ -132,9 +137,7 @@ function drawTakenGrafiek() {
 					error : function(request, error) {
 						console.log("error" + request + ", " + error);
 					},
-					success : function(newData, textStatus) {
-						updateProgressDots(newData);
-					}
+					success : onsuccess
 				});
 			}
 		}, 1000);
@@ -363,10 +366,41 @@ function drawTakenGrafiek() {
 		// delete circles
 		circlesNogtedoen.exit().remove();
 	}
-	function updateProgressDots(jsonAantallen){
+
+    function berekenTotaalAantallen() {
+        var aantallen = {
+            NogTeDoen: 0,
+            InQueue: 0,
+            Lopend: 0,
+            Gestopt: 0,
+            Klaar: 0
+        };
+
+        warroom.straten.forEach(function(element, index) {
+            element.aantallen.forEach(function(aantal) {
+                if (aantal.type === 'Nog te doen') {
+                    aantallen.NogTeDoen = aantallen.NogTeDoen + aantal.aantalTaken;
+                } else if (aantal.type === 'In wachtrij') {
+                    aantallen.InQueue = aantallen.InQueue + aantal.aantalTaken;
+                } else if (aantal.type === 'Lopend') {
+                    aantallen.Lopend = aantallen.Lopend + aantal.aantalTaken;
+                } else if (aantal.type === 'Gestopt') {
+                    aantallen.Gestopt = aantallen.Gestopt + aantal.aantalTaken;
+                } else if (aantal.type === 'Klaar') {
+                    aantallen.Klaar = aantallen.Klaar + aantal.aantalTaken;
+                }
+            });
+        });
+
+        return aantallen;
+    }
+
+	function updateProgressDots(straatIndex,jsonAantallen){
 		var arrayTaken = [];
 		var aantalNogTeStarten = jsonAantallen.NogTeDoen;		
 		var aantallenTaken = [];
+        var somAantallen;
+
 		aantallenTaken.push({
 			xOffset : 0,
 			aantalTaken: jsonAantallen.NogTeDoen,
@@ -399,6 +433,9 @@ function drawTakenGrafiek() {
 			var aantalKolommen = (element.aantalTaken / (aantalTakenPerKolom - 1) )
 			xValue = 1;
 			yCounter = 1;
+
+
+
 			for(var i = 0; i < element.aantalTaken; i++){
 				if(yCounter == aantalTakenPerKolom){
 					yCounter = 1;
@@ -431,11 +468,16 @@ function drawTakenGrafiek() {
 				}
 				
 				yCounter++;
-				arrayTaken.push(obj);
+				warroom.straten[straatIndex].taken.push(obj);
 			}
 		});
 		drawProgressIndicator(arrayTaken);
-		updateProgressLabels(jsonAantallen.NogTeDoen, jsonAantallen.InQueue, jsonAantallen.Lopend, jsonAantallen.Gestopt, jsonAantallen.Klaar);
+
+        warroom.straten[straatIndex].aantallen = aantallenTaken;
+
+        somAantallen = berekenTotaalAantallen();
+
+		updateProgressLabels(somAantallen.NogTeDoen, somAantallen.InQueue, somAantallen.Lopend, somAantallen.Gestopt, somAantallen.Klaar);
 	}
 	processUpdatingProgressDots();
 	warroomWorker.updateNiveauLabel();
@@ -445,6 +487,12 @@ function drawTakenGrafiek() {
 		for ( var i = 0; i < aantalStraten; i++) {
 			var adres = warroom.straten[i].url;
 			var straatId = warroom.straten[i].id;
+            var onsuccess = function(newData) {
+                fillDataSet(this.success.index, newData);
+
+            }
+
+            onsuccess.prototype.index = i;
 			$.ajax({
 				url : adres + '/taken/'+ straatId +'?token=' + authToken,
 				type : 'GET',
@@ -452,10 +500,7 @@ function drawTakenGrafiek() {
 				error : function(request, error) {
 					console.log(error);
 				},
-				success : function(newData) {
-					fillDataSet(newData);
-
-				}
+				success : onsuccess
 			});
 		}
 		redraw();

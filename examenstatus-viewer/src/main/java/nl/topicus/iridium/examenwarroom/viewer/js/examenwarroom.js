@@ -27,7 +27,7 @@ var warroomWorker = {
 }
 
 
-function fillDataSet(newDataset) {
+function fillDataSet(straatIndex, newDataset) {
 	var taskIdList = [];
 	var aantalObjecten = newDataset.length;
 	for ( var i = 0; i < aantalObjecten; i++) {
@@ -35,13 +35,13 @@ function fillDataSet(newDataset) {
 		if (obj != null) {
 			obj.timeLastUpdate = new Date().getTime();
 			var taskId = obj.taskId;
-			var inArrayIds = $.inArray(taskId, warroom.indexTaakIdArray);
+			var inArrayIds = $.inArray(taskId, warroom.straten[straatIndex].taken);
 			if(inArrayIds === -1){
 				// not in array, nieuwe taak
 				obj.xCurrent = 0;
 				obj.yCurrent = 0;
 				var newLength = warroom.takenArray.push(obj);
-				warroom.indexTaakIdArray.push(taskId);
+                warroom.straten[straatIndex].taken.push(taskId);
 			}else{
 				// bestaande taak
 				var indexArrayCrashteTaken = warroom.gecrashteTaken[taskId];
@@ -99,7 +99,7 @@ function fillDataSet(newDataset) {
 			var object = warroom.takenArray[index];
 			index = parseInt(index);
 			inArray = $.inArray(object.taskId, taskIdList);
-			var inArrayIds2 = $.inArray(object.taskId, warroom.indexTaakIdArray);
+			var inArrayIds2 = $.inArray(object.taskId, warroom.straten[straatIndex].taken);
 			if (inArray === -1 && inArrayIds2 !== -1) {
 				// omdat taken nooit progressie 100% hebben
 				if (object.progressie <= 100 && object.staat !== "Gestopt") {

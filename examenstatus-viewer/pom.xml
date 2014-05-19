@@ -62,6 +62,12 @@
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- JUNIT DEPENDENCY FOR TESTING -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -75,6 +81,9 @@
 			<artifactId>jetty-plus</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		
+		
 	</dependencies>
 	
 	<build>
